@@ -1,15 +1,12 @@
 version: 2 # use CircleCI 2.0
-jobs: # A basic unit of work in a run
+jobs:
   build_and_test: # runs not using Workflows must have a `build` job as entry point
     # directory where steps are run
     working_directory: ~/doin-a-watch
     docker: # run the steps with Docker
-      # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
       - image: circleci/python:3.7.4-buster
         environment: # environment variables for primary container
           PIPENV_VENV_IN_PROJECT: true
-          # DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
-      # CircleCI PostgreSQL images available at: https://hub.docker.com/r/circleci/postgres/
     steps: # steps that comprise the `build` job
       - checkout # check out source code to working directory
       - run: sudo chown -R circleci:circleci /usr/local/bin
@@ -31,9 +28,6 @@ jobs: # A basic unit of work in a run
             - ".venv"
             - "/usr/local/bin"
             - "/usr/local/lib/python3.7/site-packages"
-      #- run:
-      #    command: | # cd ~/maps-api
-      #      pipenv run python
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
@@ -55,8 +49,6 @@ jobs: # A basic unit of work in a run
             echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
             gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
             gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-      #       gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-      #       gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
       - setup_remote_docker
       - run:
           command: |
@@ -80,8 +72,3 @@ workflows:
       - build_base_image:
           requires:
             - build_and_test
-          # requires:
-          #   - build_and_test
-          # filters:
-          #   branches:
-          #     only: master
