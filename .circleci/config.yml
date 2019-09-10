@@ -59,8 +59,8 @@ jobs: # A basic unit of work in a run
       #       gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
       - setup_remote_docker
       - run:
-        command: |
-          ls -a
+          command: |
+            ls -a
       - run:
           name: Docker build and push
 
