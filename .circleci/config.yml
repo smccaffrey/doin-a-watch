@@ -72,7 +72,7 @@ workflows:
   build_and_store:
     jobs:
       # - build_and_test
-      - deploy_to_staging
+      - build_base_image
           # requires:
           #   - build_and_test
           # filters:
