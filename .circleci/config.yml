@@ -40,7 +40,7 @@ jobs: # A basic unit of work in a run
           path: test-results
           destination: tr1
   build_base_image:
-    - working_directory: ~/doin-a-watch
+    working_directory: ~/doin-a-watch
     docker:
       - image: google/cloud-sdk
     environment:
