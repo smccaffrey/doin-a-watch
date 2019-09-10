@@ -59,9 +59,12 @@ jobs: # A basic unit of work in a run
       #       gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
       - setup_remote_docker
       - run:
+        command: |
+          ls -a
+      - run:
           name: Docker build and push
+
           command: |
-            ls
             docker build \
                 --build-arg COMMIT_REF=${CIRCLE_SHA1} \
                 --build-arg BUILD_DATE=`date -u +”%Y-%m-%dT%H:%M:%SZ”` \
