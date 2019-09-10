@@ -40,6 +40,7 @@ jobs: # A basic unit of work in a run
           path: test-results
           destination: tr1
   build_base_image:
+    - working_directory: ~/doin-a-watch
     docker:
       - image: google/cloud-sdk
     environment:
@@ -57,7 +58,6 @@ jobs: # A basic unit of work in a run
       #       gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
       #       gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
       - setup_remote_docker
-      - working_directory: ~/doin-a-watch
       - run:
           name: Docker build and push
           command: |
