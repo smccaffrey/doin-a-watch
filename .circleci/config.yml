@@ -61,6 +61,7 @@ jobs: # A basic unit of work in a run
       - run:
           name: Docker build and push
           command: |
+            ls
             docker build \
                 --build-arg COMMIT_REF=${CIRCLE_SHA1} \
                 --build-arg BUILD_DATE=`date -u +”%Y-%m-%dT%H:%M:%SZ”` \
