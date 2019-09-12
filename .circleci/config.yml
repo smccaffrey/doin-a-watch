@@ -54,8 +54,10 @@ jobs:
           command: |
             ls -a
       - run:
+          command: |
+            docker pull balenalib/raspberrypi4-64-alpine-python
+      - run:
           name: Docker build and push
-
           command: |
             docker build \
                 --build-arg COMMIT_REF=${CIRCLE_SHA1} \
