@@ -1,13 +1,5 @@
 ### sam
 ### video streaming
-import io
-#import time
-#import threading
-#import picamera
-import camera as picamera
-
-# from camera import Cameraimg src="{{ url_for('video_feed') }}"
-from greenlet import getcurrent as get_ident
 from flask import Flask, render_template, Response
 
 from cameras.camera import Camera
